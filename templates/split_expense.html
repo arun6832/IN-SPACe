@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Split Expenses for {{ group.name }}</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label>Total Amount:</label>
+    <input type="number" name="total_amount" step="0.01" required>
+    
+    <h3>Choose Split Method</h3>
+    <label><input type="radio" name="split_method" value="equal" required> Equal Split</label><br>
+    <label><input type="radio" name="split_method" value="custom"> Custom Split for Each Person</label><br>
+    <label><input type="radio" name="split_method" value="checkbox"> Checkbox for Specific Person</label><br>
+
+    <div id="member-inputs">
+        <h4>Members:</h4>
+        {% for member in group.members.all %}
+        <div>
+            <label>{{ member.name }}:</label>
+            <input type="text" name="amount_{{ member.id }}" placeholder="Custom Amount" value="0.0">
+            <input type="checkbox" name="checkbox_{{ member.id }}">
+        </div>
+        {% endfor %}
+    </div>
+
+    <button type="submit">Split Expenses</button>
+</form>
+{% endblock %}

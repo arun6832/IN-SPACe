@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Splitter</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<style>
+    /* Image Gallery Styles */
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.feature-image {
+    width: 200px;
+    height: auto;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Container Styles */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<body>
+
+<header>
+    <div class="nav-container">
+        <h1>Expense Splitter</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'create_group' %}">Create Group</a></li>
+                <li><a href="{% url 'split_expenses' 0 %}">Split Expenses</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <h2>Welcome to the Expense Splitter!</h2>
+    <p>Manage your group expenses efficiently.</p>
+    <div class="image-gallery">
+        <img src="{% static 'images/group_expense.jpg' %}" alt="Group Expense" class="feature-image">
+        <img src="{% static 'images/custom_split.jpg' %}" alt="Custom Split" class="feature-image">
+        <img src="{% static 'images/split_equally.jpg' %}" alt="Split Equally" class="feature-image">
+    </div>
+    <div class="button-container">
+        <a href="{% url 'create_group' %}" class="btn">Start Now</a>
+    </div>
+</div>
+
+</body>
+</html>

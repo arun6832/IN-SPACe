@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Summary</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Group Summary for {{ group.name }}</h1>
+        <h2>Members:</h2>
+        <ul>
+            {% for member in members %}
+                <li>{{ member.name }} - Amount Due: {{ member.amount }} Rs</li>
+            {% endfor %}
+        </ul>
+        
+        <h2>Splits:</h2>
+        <ul>
+            {% for split in group.splits.all %}
+                <li>Total Split: {{ split.total_amount }} Rs on {{ split.created_at }}</li>
+            {% endfor %}
+        </ul>
+        
+        <a href="{% url 'create_group' %}">Create another group</a>
+        <a href="{% url 'split_expenses' group.id %}">Add another split</a>
+    </div>
+</body>
+</html>

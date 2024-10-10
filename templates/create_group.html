@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create Group</h2>
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="group_name" placeholder="Group Name" required>
+    <input type="text" name="member_names" placeholder="Member Names (comma-separated)" required>
+    <button type="submit">Create Group</button>
+</form>
+{% endblock %}
